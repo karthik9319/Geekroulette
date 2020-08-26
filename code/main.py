@@ -10,15 +10,43 @@ def game_logic():
     win_num = big_pot.index(min(big_pot))
     return win_num
 
+def odd_even_check(win_num): 
+    if win_num % 2 == 0:
+        return True
+    else:
+        return False
 
-print("place your bets gentlemen")
+
+
 win_num = game_logic()
+
+players = ['player_1', 'player_2', 'player_3']
+print("place your bets gentlemen")
 player_1 = int(input("player 1: "))
 player_2 = int(input("player 2: "))
 player_3 = int(input("player 3: "))
-bets = [player_1, player_2, player_3]
+player_bets = [player_1, player_2, player_3]
 
-if win_num in bets:
-    print(f" Winner is {bets.index(win_num)}")
+
+print("place your guess even or odd")
+status_player_1 = (input("player 1: "))
+status_player_2 = (input("player 2: "))
+status_player_3 = (input("player 3: "))
+player_status = [status_player_1, status_player_2, status_player_3]
+status_bets = [True if player_status[i].lower() == 'even' else False for i in range(len(player_status)) ]
+print(status_bets)
+
+
+
+status = odd_even_check(win_num)
+print(status)
+winners = [i for i in range(len(status_bets)) if status_bets[i] == status ]
+print(player[i for i in range(len(winners))])
+print(winners)
+# print([x for i in status_bets if i])
+
+if win_num in player_bets:
+    
+    print(f" Winner is Player_{player_bets.index(win_num)+1}")
 else:
     print(f" Sorry people you didn't guess right!!! Lucky number is  {win_num} ")
