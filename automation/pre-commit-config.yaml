@@ -1,0 +1,54 @@
+# See https://pre-commit.com/ for usage and config
+
+## This is used to configure commit hooks on your
+## local git repository. If pre-commit is properly
+## configured and installed, each of the checks below
+## should run on your repository every time you
+## perform a commit:
+##
+##    > git commit -m 'did a thing'
+##    isort.....................................Passed
+##    black.....................................Passed
+##    Flake8....................................Passed
+##
+## Any check that fails will prevent you from committing.
+
+repos:
+  ## isort and black are formatters, and they fail when
+  ## they change a file, so that you know they've done so
+  ## and have a chance to do something about it if you wish
+  ## before you commit. In most cases, you should be able
+  ## to just try again in order to succeed.
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v4.3.21
+    hooks:
+      - id: isort
+        stages: [commit]
+  - repo: https://github.com/psf/black
+    rev: stable
+    hooks:
+      - id: black
+        language_version: python3.6
+        stages: [commit]
+  ## Flake8 and mypy are static analyzers, and they will fail
+  ## if they find bugs or bad practice in your code. In such
+  ## a case, you will have to fix those things in order to
+  ## pass your commit.
+  ##
+  ## As such, we recommend that you COMMIT EARLY AND OFTEN!
+  ## Completeness doesn't matter! All you're doing is
+  ## checkpointing your work, and the less distance between
+  ## the last commit and the current one, the easier it will
+  ## be to fix any bugs that the static analyzers find.
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.4.0
+    hooks:
+      - id: flake8
+        additional_dependencies: [flake8-bandit]
+        stages: [commit]
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v0.740
+    hooks:
+      - id: mypy
+        stages: [commit]
+#pre-commit run --config automation/pre-commit-config.yaml
