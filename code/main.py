@@ -34,23 +34,24 @@ status_player_2 = (input("player 2: "))
 status_player_3 = (input("player 3: "))
 player_status = [status_player_1, status_player_2, status_player_3]
 status_bets = [True if player_status[i].lower() == 'even' else False for i in range(len(player_status)) ]
-print(status_bets)
 
 
 
 status = odd_even_check(win_num)
-print(status)
+
+def status_bets_check(status):
+    winners = [i for i in range(len(status_bets)) if status_bets[i] == status ]
+    for i in range(len(winners)):
+        return f"Good thing you guessed this right atleast", players[winners[i]]
+
+
 print(win_num)
-winners = [i for i in range(len(status_bets)) if status_bets[i] == status ]
-for i in range(len(winners)):
-    print("Good thing you guessed this right atleast", players[winners[i]])
-
-print(winners)
-# print([x for i in status_bets if i])
-
 
 def win_check():
     if win_num in player_bets:
         return f" Winner is Player_{player_bets.index(win_num)+1}"
     else:
-        return f" Sorry people you didn't guess right!!! Lucky number is  {win_num} ")
+        return f" Sorry people you didn't guess right!!! Lucky number is  {win_num} "
+    
+print(win_check())
+print(status_bets_check(status))
