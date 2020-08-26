@@ -40,13 +40,17 @@ print(status_bets)
 
 status = odd_even_check(win_num)
 print(status)
+print(win_num)
 winners = [i for i in range(len(status_bets)) if status_bets[i] == status ]
-print(player[i for i in range(len(winners))])
+for i in range(len(winners)):
+    print("Good thing you guessed this right atleast", players[winners[i]])
+
 print(winners)
 # print([x for i in status_bets if i])
 
-if win_num in player_bets:
-    
-    print(f" Winner is Player_{player_bets.index(win_num)+1}")
-else:
-    print(f" Sorry people you didn't guess right!!! Lucky number is  {win_num} ")
+
+def win_check():
+    if win_num in player_bets:
+        return f" Winner is Player_{player_bets.index(win_num)+1}"
+    else:
+        return f" Sorry people you didn't guess right!!! Lucky number is  {win_num} ")
