@@ -1,30 +1,32 @@
 from random import SystemRandom
+from variables import dummy_names
 
 cryptogen = SystemRandom()
 
 class Player():
-    def __init__(self):
-        num = int(input("No of Players: "))
-        return num
-        
-    def player_name(self):
-        for i in range(num):
-            self.player_i = input("Player1: ")
-            print(player_i)
     
-    # def num_players(self):
-    #     self.num = num
+    # print("No of players: ")
+    
+    def __init__(self, name):
+        self.name = name
+    
+    
 
+no_of_players = int(input("No of players (max 5): "))
 
-a = Player()
-# b = Player.player_name("karthik")
-# c = Player.player_name("kishore")
-print(a)     
+players = []
+for i in range(no_of_players):
+    print("player {}: ".format(i+1), dummy_names[i])
+    overwrite = input("overwrite (y or n)? : ")
+    if overwrite == 'y':
+        player = input("player {}: ".format(i+1))
+        player = Player(player)
+        players.append(player.name)
         
-        
-        
-        
-        
+    else:
+        players.append(dummy_names[i])
+
+print(players)
         
         
 # def game_logic():
