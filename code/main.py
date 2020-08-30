@@ -20,10 +20,13 @@ no_of_players = int(input("No of players (max 5): "))
 
 
 def odd_check():
-    if win_num % 2 == 0:
-        return "False"
+    if win_num > 0:
+        if win_num % 2 == 0:
+            return "False"
+        else:
+            return "True"
     else:
-        return "True"
+        return "False"
 
 
 def prime_no_prime():
@@ -66,6 +69,22 @@ def score_check(guess_number, status, prime):
     return x, y, z
 
 
+
+def winner(players):
+    for i in range(len(players)):
+        x = players[i]
+        if x[1] == 5:
+            print("Guessed right: ", x[0])
+            print("Roulette Number: ", win_num)
+        if x[2] == 1:
+            print("Lucky you!! ", x[0])
+            print("Roulette Number: ", win_num)
+        if x[3] == 1:
+            print("Awesome Guess: ", x[0])
+            print("Roulette Number: ", win_num)
+            
+
+
 # to store player data and input player information
 players = []
 for i in range(no_of_players):
@@ -92,5 +111,6 @@ for i in range(no_of_players):
         players.append([player, win_status, status, prime])
 
 
-print(players)
-print(win_num)
+
+winner(players)
+
