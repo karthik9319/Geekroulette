@@ -1,4 +1,5 @@
 from random import SystemRandom
+
 from variables import dummy_names
 
 cryptogen = SystemRandom()
@@ -105,7 +106,6 @@ for i in range(no_of_players):
             input("Odd (True or False): "),
             input("Prime (True or False): "),
         )
-        # player = Player( input("Player {}: ".format(i+1)), input("Guess number (0-9): "), input("Odd (True or False): "), input("Prime (True or False): "))
         win_status, status, prime = score_check(guess_number, status, prime)
         players.append([player, win_status, status, prime])
 
@@ -116,7 +116,6 @@ for i in range(no_of_players):
             input("Odd (True or False): "),
             input("Prime (True or False): "),
         )
-        # player = Player( dummy_names[i], input("Guess number (0-9): "), input("Odd (True or False): "), input("Prime (True or False): "))
         win_status, status, prime = score_check(guess_number, status, prime)
         players.append([player, win_status, status, prime])
 
