@@ -4,34 +4,6 @@ from variables import dummy_names
 
 cryptogen = SystemRandom()
 
-# class Player():
-
-# def __init__(self,name, guess_number, status, prime):
-#     self.name = name
-#     self.guess_number = guess_number
-#     self.status = status
-#     self.prime = prime
-
-
-# def win(self):
-#     if guess_number == win_num:
-#         return 1
-#     else:
-#         return 0
-
-# def odd_even_check(self):
-#     if win_num % 2 == 0:
-#         return False
-#     else:
-#         return True
-
-# def prime_no_prime(self):
-#     for i in range(2, win_num):
-#         if i % 2 == 0:
-#             return False
-#         else:
-# return True
-
 
 def game_logic():
     big_pot = []
