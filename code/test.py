@@ -33,28 +33,25 @@ class Player():
     
     
 no_of_players = int(input("No of players (max 5): "))
-# player = Player(input("Player: "), input("Odd or even: "))
-# print(player.name)
-# print(player.status)
+print(Player.game_logic(2))
+
+
+# to store player data and input player information
 players = []
 for i in range(no_of_players):
     print("player {}: ".format(i+1), dummy_names[i])
     overwrite = input("overwrite (y or n)? : ")
     if overwrite == 'y':
         player = Player( input("Player {}: ".format(i+1)), input("Odd or even: "), input("Prime or not prime: "))
-        # player = input("player {}: ".format(i+1))
-        # player = Player(player, )
         players.append([player.name, player.status, player.prime])
         
     else:
         player = Player( dummy_names[i], input("Odd or even: "), input("Prime or not prime: "))
         players.append([player.name, player.status, player.prime])
 
-# print(player.name)
-# print(player.status)
-# print(player.prime) 
-print(players)
-print(Player.game_logic(no_of_players))
+
+# print(players)
+# print(Player.game_logic(no_of_players))
 # def game_logic():
 #     big_pot = []
 #     for i in range(10):
