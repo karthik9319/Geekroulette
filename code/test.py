@@ -4,12 +4,12 @@ cryptogen = SystemRandom()
 
 class Player():
     
-    def __init__(self, status, prime, name = None):
+    def __init__(self,name, status, prime):
         self.status = status
         self.prime = prime
         self.name = name
      
-    def game_logic(self):
+    def game_logic(self, no_of_players):
         big_pot = []
         for i in range(10):
             elem = [cryptogen.randrange(9) for i in range(9)]
@@ -18,18 +18,18 @@ class Player():
         win_num = big_pot.index(min(big_pot))
         return win_num
     
-    def odd_even_check(self): 
-        if win_num % 2 == 0:
-            return True
-        else:
-            return False
+    # def odd_even_check(self): 
+    #     if win_num % 2 == 0:
+    #         return True
+    #     else:
+    #         return False
         
-    def prime_no_prime(self):
-        for i in range(2, win_num):
-            if i % 2 == 0:
-                return False
-            else:
-                return True
+    # def prime_no_prime(self):
+    #     for i in range(2, win_num):
+    #         if i % 2 == 0:
+    #             return False
+    #         else:
+    #             return True
     
     
 no_of_players = int(input("No of players (max 5): "))
@@ -41,20 +41,20 @@ for i in range(no_of_players):
     print("player {}: ".format(i+1), dummy_names[i])
     overwrite = input("overwrite (y or n)? : ")
     if overwrite == 'y':
-        player = Player(input("Odd or even: "), input("Prime or not prime: "), input("Player {}: ".format(i+1)))
+        player = Player( input("Player {}: ".format(i+1)), input("Odd or even: "), input("Prime or not prime: "))
         # player = input("player {}: ".format(i+1))
         # player = Player(player, )
         players.append([player.name, player.status, player.prime])
         
     else:
-        player = Player(input("Odd or even: "), input("Prime or not prime: "), dummy_names[i])
+        player = Player( dummy_names[i], input("Odd or even: "), input("Prime or not prime: "))
         players.append([player.name, player.status, player.prime])
 
 # print(player.name)
 # print(player.status)
 # print(player.prime) 
 print(players)
-print(Player.game_logic(self))
+print(Player.game_logic(no_of_players))
 # def game_logic():
 #     big_pot = []
 #     for i in range(10):
