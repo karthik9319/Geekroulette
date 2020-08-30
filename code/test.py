@@ -33,12 +33,11 @@ cryptogen = SystemRandom()
  
 def game_logic():
     big_pot = []
-    for i in range(10):
+    for _ in range(10):
         elem = [cryptogen.randrange(9) for i in range(9)]
         sum_elem = sum(elem)
         big_pot.append(sum_elem)
-    win_num = big_pot.index(min(big_pot))
-    return win_num  
+    return big_pot.index(min(big_pot))  
 
 win_num = game_logic()
 no_of_players = int(input("No of players (max 5): "))
@@ -53,22 +52,15 @@ def odd_check():
 
 
 def prime_no_prime():
-    if win_num > 1:
-        if win_num in [2, 3, 5, 7]:
-            return "True"
-        else:
-            return "False"
+    if win_num > 1 and win_num in [2, 3, 5, 7]:
+        return "True"
     else:
         return "False"
 
 def score_check(guess_number, status, prime):
     
     def test1(guess_number, win_num):
-        if guess_number == win_num:
-            h = 5
-        else:
-            h = 0
-        return h
+        return 5 if guess_number == win_num else 0
 
         
         
