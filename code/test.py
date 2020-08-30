@@ -115,6 +115,7 @@ for i in range(no_of_players):
         players.append([player, win_status, status, prime])
 
 
+
 print(players)
 print(win_num)
 # print(Player.game_logic(no_of_players))
