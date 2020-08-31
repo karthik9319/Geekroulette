@@ -8,6 +8,14 @@ cryptogen = SystemRandom()
 
 
 print("======================  Game Rules  ==================================")
+print("Step 1: Select number of players")
+print("Step 2: Machines asks you overwrite or use existing name ")
+print("Step 3: Choose the number you want to bed in range from 1-36")
+print("Step 4: Choose the color either red or black")
+print("Step 5: Choose which range the number belongs to Dozen(1-12) Second(13-24) Third(25-36)")
+print("Step 6: Choose whether the number is prime or not")
+print("=======================================================================")
+
 
 def game_logic():
     big_pot = []
@@ -137,7 +145,7 @@ def score_check(guess_number, choice, mode, status, prime):
 players = []
 for i in range(no_of_players):
     print("player {}: ".format(i + 1), dummy_names[i])
-    overwrite = input("overwrite (y or n)? : ")
+    overwrite = input("overwrite Player name(y or n)? : ")
     if overwrite == "y":
         player, guess_number, choice, mode, status, prime = (
             input("Player {}: ".format(i + 1)),
