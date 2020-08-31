@@ -1,5 +1,6 @@
 from random import SystemRandom
 from tabulate import tabulate
+from prettytable import PrettyTable
 from variables import dummy_names
 
 cryptogen = SystemRandom()
@@ -167,47 +168,39 @@ def score_check(
     return win_status, choice, mode, status, prime
 
 
-# def winner(players):
-#     for i in range(len(players)):
-#         x = players[i]
-#         if x[1] == 5:
-#             print("Guessed right: ", x[0])
-#             print("Roulette Number: ", win_num)
-#         if x[2] == 1:
-#             print("Lucky you!! ", x[0])
-#             print("Roulette Number: ", win_num)
-#         if x[3] == 1:
-#             print("Awesome Guess: ", x[0])
-#             print("Roulette Number: ", win_num)
-
-
 def score_print(players):
-    for i in range(len(players)):
-        print(
-            tabulate(
-                [
-                    [
-                        players[i][0],
-                        str(players[i][1]) + "$",
-                        str(players[i][2]) + "$",
-                        str(players[i][3]) + "$",
-                        str(players[i][4]) + "$",
-                        str(players[i][5]) + "$",
-                    ]
-                ],
-                headers=[
+    t = PrettyTable([
                     "Players",
                     "Guess number",
                     "red/black",
                     "range",
                     "odd",
                     "prime",
-                ],
-                tablefmt="orgtbl",
-            )
-        )
-        # print(players[i][0])
-        # print(players[i][1:])
+                ])
+    t.add_row([
+        "Original values",
+        win_num,
+        red_black(),
+        num_range(),
+        odd_check(),
+        prime_no_prime(),
+    ])
+    for i in range(len(players)):
+        t.add_row([
+                        players[i][0],
+                        str(players[i][1]) + "$",
+                        str(players[i][2]) + "$",
+                        str(players[i][3]) + "$",
+                        str(players[i][4]) + "$",
+                        str(players[i][5]) + "$",
+                    ])
+    print(t)
+
+
+
+
+
+
 
 
 # to store player data and input player information
@@ -297,7 +290,6 @@ for i in range(no_of_players):
         players.append([player, win_status, choice, mode, status, prime])
 
 
-print(players)
 
 score_print(players)
 # winner(players)
