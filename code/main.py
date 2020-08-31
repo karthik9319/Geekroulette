@@ -1,5 +1,6 @@
 from random import SystemRandom
-from tabulate import tabulate
+import time
+from tqdm import tqdm
 from prettytable import PrettyTable
 from variables import dummy_names
 
@@ -56,7 +57,7 @@ def game_logic():
 
 
 win_num = game_logic()
-no_of_players = int(input("No of players (max 5): "))
+no_of_players = int(input("No of players: "))
 print(win_num)
 
 
@@ -290,9 +291,9 @@ for i in range(no_of_players):
         players.append([player, win_status, choice, mode, status, prime])
 
 
+for i in tqdm(range(10000000), desc="Spinning the lucky wheel"):
+    pass
+
 
 score_print(players)
-# winner(players)
-
-#todo prettytable
-#todo https://stackoverflow.com/questions/9535954/printing-lists-as-tabular-data
+#todo people board to show what all bets they placed
