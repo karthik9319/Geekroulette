@@ -5,15 +5,19 @@ from variables import dummy_names
 cryptogen = SystemRandom()
 
 
-
-
 print("======================  Game Rules  ==================================")
-print("Step 1: Select number of players")
-print("Step 2: Machines asks you overwrite or use existing name ")
-print("Step 3: Choose the number you want to bed in range from 1-36")
-print("Step 4: Choose the color either red or black")
-print("Step 5: Choose which range the number belongs to Dozen(1-12) Second(13-24) Third(25-36)")
-print("Step 6: Choose whether the number is prime or not")
+print("1. Select number of players")
+print("2. Machine asks you overwrite or use existing name ")
+print("3. You have to choose at least one of the four bets available")
+print("4. If you're not choosing that particular bet enter 0 in category as well as bet amount")
+print("5. First asks for which category to choose next it will ask for how much amount you wanna bet")
+print("6. Choose the number you want to bed in range from 1-36")
+print("7. Choose the color either red or black")
+print(
+    "8. Choose which range the number belongs to Dozen(1-12) Second(13-24) Third(25-36)"
+)
+print("9. Choose whether is number is odd or not")
+print("10. Choose whether the number is prime or not")
 print("=======================================================================")
 
 
@@ -25,12 +29,13 @@ def game_logic():
         sum_elem = sum(elem)
         big_pot.append(sum_elem)
     win_num = big_pot.index(min(big_pot))
-    return win_num+1
+    return win_num + 1
 
 
 win_num = game_logic()
 no_of_players = int(input("No of players (max 5): "))
 print(win_num)
+
 
 def odd_check():
     if win_num > 0:
@@ -53,7 +58,7 @@ def prime_no_prime():
 
 
 def red_black():
-    if win_num in [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]:
+    if win_num in [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]:
         h = "red"
     else:
         h = "black"
@@ -61,7 +66,7 @@ def red_black():
 
 
 def num_stat():
-    if win_num in range(1,19):
+    if win_num in range(1, 19):
         h = "low"
     else:
         h = "high"
@@ -77,53 +82,67 @@ def num_range():
         h = "third"
     return h
 
-def score_check(guess_number, choice, mode, status, prime):
-    
-    def test1(guess_number, win_num):
+
+def score_check(
+    guess_number,
+    bet_number,
+    choice,
+    bet_choice,
+    mode,
+    bet_mode,
+    status,
+    bet_status,
+    prime,
+    bet_prime,
+):
+    def test1(guess_number, bet_number):
         if guess_number == win_num:
             h = 5
         else:
             h = 0
-        return h
+        return h * bet_number
 
-    def test2(status):
+    def test2(choice, bet_choice):
+        orig_choice = red_black()
+        if choice != orig_choice:
+            h = 0
+        else:
+            h = 2
+        return h * bet_choice
+
+    def test3(option, bet_mode):
+        orig_option = num_range()
+        if option != orig_option:
+            h = 0
+        else:
+            h = 2
+        return h * bet_mode
+
+    def test4(status, bet_status):
         status = status.capitalize()
         orig_status = odd_check()
         if status != orig_status:
-            return 0
+            h = 0
         else:
-            return 1
+            h = 2
+        return h * bet_status
 
-    def test3(prime):
+    def test5(prime, bet_prime):
         prime = prime.capitalize()
         orig_prime = prime_no_prime()
         if prime != orig_prime:
-            return 0
+            h = 0
         else:
-            return 1
+            h = 2
+        return h * bet_prime
 
-    def test4(choice):
-        orig_choice = red_black()
-        if choice != orig_choice:
-            return 0
-        else:
-            return 1
+    win_status = test1(guess_number, bet_number)
+    choice = test2(choice, bet_choice)
+    mode = test3(mode, bet_mode)
+    status = test4(status, bet_status)
+    prime = test5(prime, bet_prime)
 
-    def test5(option):
-        orig_option = num_stat()
-        if option != orig_option:
-            return 0
-        else:
-            return 1
-    
-    win_status = test1(guess_number, win_num)
-    status = test2(status)
-    prime = test3(prime)
-    choice = test4(choice)
-    mode = test5(mode)
-    
-    return win_status, status, prime, choice, mode
-
+    return win_status, choice, mode, status, prime
 
 
 # def winner(players):
@@ -138,7 +157,12 @@ def score_check(guess_number, choice, mode, status, prime):
 #         if x[3] == 1:
 #             print("Awesome Guess: ", x[0])
 #             print("Roulette Number: ", win_num)
-            
+
+
+def score_print(players):
+    for i in range(len(players)):
+        print(players[i][0])
+        print(players[i][1:])
 
 
 # to store player data and input player information
@@ -147,31 +171,88 @@ for i in range(no_of_players):
     print("player {}: ".format(i + 1), dummy_names[i])
     overwrite = input("overwrite Player name(y or n)? : ")
     if overwrite == "y":
-        player, guess_number, choice, mode, status, prime = (
+        (
+            player,
+            guess_number,
+            bet_number,
+            choice,
+            bet_choice,
+            mode,
+            bet_mode,
+            status,
+            bet_status,
+            prime,
+            bet_prime,
+        ) = (
             input("Player {}: ".format(i + 1)),
-            int(input("Guess number (1-36): ")),
+            int(input("choose number (1-36): ")),
+            int(input("Bet amount: ")),
             input("Red or Black: "),
-            input("Dozen(1-12) \n Second(13-24) \n Third(25-36): "),
+            int(input("Bet amount: ")),
+            input("Dozen(1-12) \nSecond(13-24) \nThird(25-36): "),
+            int(input("Bet amount: ")),
             input("Odd (True or False): "),
+            int(input("Bet amount: ")),
             input("Prime (True or False): "),
+            int(input("Bet amount: ")),
         )
-        win_status, choice, mode, status, prime = score_check(guess_number, choice, mode, status, prime)
+        win_status, choice, mode, status, prime = score_check(
+            guess_number,
+            bet_number,
+            choice,
+            bet_choice,
+            mode,
+            bet_mode,
+            status,
+            bet_status,
+            prime,
+            bet_prime,
+        )
         players.append([player, win_status, choice, mode, status, prime])
 
     else:
-        player, guess_number, choice, mode, status, prime = (
+        (
+            player,
+            guess_number,
+            bet_number,
+            choice,
+            bet_choice,
+            mode,
+            bet_mode,
+            status,
+            bet_status,
+            prime,
+            bet_prime,
+        ) = (
             dummy_names[i],
-            int(input("Guess number (1-36): ")),
+            int(input("choose number (1-36): ")),
+            int(input("Bet amount: ")),
             input("Red or Black: "),
+            int(input("Bet amount: ")),
             input("Dozen(1-12) \nSecond(13-24) \nThird(25-36): "),
+            int(input("Bet amount: ")),
             input("Odd (True or False): "),
+            int(input("Bet amount: ")),
             input("Prime (True or False): "),
+            int(input("Bet amount: ")),
         )
-        win_status, choice, mode, status, prime = score_check(guess_number, choice, mode, status, prime)
+
+        win_status, choice, mode, status, prime = score_check(
+            guess_number,
+            bet_number,
+            choice,
+            bet_choice,
+            mode,
+            bet_mode,
+            status,
+            bet_status,
+            prime,
+            bet_prime,
+        )
         players.append([player, win_status, choice, mode, status, prime])
 
 
 print(players)
 
+score_print(players)
 # winner(players)
-
