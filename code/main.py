@@ -1,16 +1,22 @@
 from random import SystemRandom
-
+from tabulate import tabulate
 from variables import dummy_names
 
 cryptogen = SystemRandom()
 
 
-print("======================================  Game Rules  =========================================")
+print(
+    "======================================  Game Rules  ========================================="
+)
 print("1. Select number of players")
 print("2. Machine asks you overwrite or use existing name ")
 print("3. You have to choose at least one of the four bets available")
-print("4. First asks for which category to choose next it will ask for how much amount you wanna bet")
-print("5. If you're not choosing that particular bet enter 0 in category as well as bet amount")
+print(
+    "4. First asks for which category to choose next it will ask for how much amount you wanna bet"
+)
+print(
+    "5. If you're not choosing that particular bet enter 0 in category as well as bet amount"
+)
 print("6. Choose the number you want to bet in range from 1-36")
 print("7. Choose the color either red or black")
 print(
@@ -18,9 +24,13 @@ print(
 )
 print("9. Choose whether is number is odd or not")
 print("10. Choose whether the number is prime or not")
-print("=============================================================================================")
+print(
+    "============================================================================================="
+)
 print("\n")
-print("======================================  Betting Rules  ======================================")
+print(
+    "======================================  Betting Rules  ======================================"
+)
 print("1: Each player starts with 100$")
 print("2: Choosing number will return 5 times the amount")
 print("3: Choosing color will return 2 times the amount")
@@ -28,7 +38,11 @@ print("4: Choosing range will return 2 times the amount")
 print("5: Choosing odd or not will return 2 times the amount")
 print("6: Choosing prime or not will return 2 times the amount")
 print("\n")
-print("==============================================================================================")
+print(
+    "=============================================================================================="
+)
+
+
 def game_logic():
     big_pot = []
     for i in range(36):
@@ -169,8 +183,31 @@ def score_check(
 
 def score_print(players):
     for i in range(len(players)):
-        print(players[i][0])
-        print(players[i][1:])
+        print(
+            tabulate(
+                [
+                    [
+                        players[i][0],
+                        str(players[i][1]) + "$",
+                        str(players[i][2]) + "$",
+                        str(players[i][3]) + "$",
+                        str(players[i][4]) + "$",
+                        str(players[i][5]) + "$",
+                    ]
+                ],
+                headers=[
+                    "Players",
+                    "Guess number",
+                    "red/black",
+                    "range",
+                    "odd",
+                    "prime",
+                ],
+                tablefmt="orgtbl",
+            )
+        )
+        # print(players[i][0])
+        # print(players[i][1:])
 
 
 # to store player data and input player information
@@ -264,3 +301,6 @@ print(players)
 
 score_print(players)
 # winner(players)
+
+#todo prettytable
+#todo https://stackoverflow.com/questions/9535954/printing-lists-as-tabular-data
