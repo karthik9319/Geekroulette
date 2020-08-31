@@ -75,4 +75,3 @@ dummy_names = [
     "Worms",
 ]
 
-print(len(dummy_names))
