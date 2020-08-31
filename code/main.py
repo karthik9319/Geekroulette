@@ -1,7 +1,7 @@
 from random import SystemRandom
-import time
-from tqdm import tqdm
-from prettytable import PrettyTable
+
+from prettytable import PrettyTable  # type: ignore
+from tqdm import tqdm  # type: ignore
 from variables import dummy_names
 
 cryptogen = SystemRandom()
@@ -170,38 +170,38 @@ def score_check(
 
 
 def score_print(players):
-    t = PrettyTable([
-                    "Players",
-                    "Guess number",
-                    "red/black",
-                    "range",
-                    "odd",
-                    "prime",
-                ])
-    t.add_row([
-        "Original values",
-        win_num,
-        red_black(),
-        num_range(),
-        odd_check(),
-        prime_no_prime(),
-    ])
+    t = PrettyTable(
+        [
+            "Players",
+            "Guess number",
+            "red/black",
+            "range",
+            "odd",
+            "prime",
+        ]
+    )
+    t.add_row(
+        [
+            "Original values",
+            win_num,
+            red_black(),
+            num_range(),
+            odd_check(),
+            prime_no_prime(),
+        ]
+    )
     for i in range(len(players)):
-        t.add_row([
-                        players[i][0],
-                        str(players[i][1]) + "$",
-                        str(players[i][2]) + "$",
-                        str(players[i][3]) + "$",
-                        str(players[i][4]) + "$",
-                        str(players[i][5]) + "$",
-                    ])
+        t.add_row(
+            [
+                players[i][0],
+                str(players[i][1]) + "$",
+                str(players[i][2]) + "$",
+                str(players[i][3]) + "$",
+                str(players[i][4]) + "$",
+                str(players[i][5]) + "$",
+            ]
+        )
     print(t)
-
-
-
-
-
-
 
 
 # to store player data and input player information
@@ -296,4 +296,4 @@ for i in tqdm(range(10000000), desc="Spinning the lucky wheel"):
 
 
 score_print(players)
-#todo people board to show what all bets they placed
+# todo people board to show what all bets they placed
