@@ -7,8 +7,9 @@ cryptogen = SystemRandom()
 
 def game_logic():
     big_pot = []
-    for i in range(10):
+    for i in range(9):
         elem = [cryptogen.randrange(9) for i in range(9)]
+        # print(elem)
         sum_elem = sum(elem)
         big_pot.append(sum_elem)
     win_num = big_pot.index(min(big_pot))
@@ -17,7 +18,7 @@ def game_logic():
 
 win_num = game_logic()
 no_of_players = int(input("No of players (max 5): "))
-
+print(win_num)
 
 def odd_check():
     if win_num > 0:
@@ -38,6 +39,22 @@ def prime_no_prime():
     else:
         return "False"
 
+
+def red_black():
+    var = cryptogen.randrange(2)
+    if var == 0:
+        h = "red"
+    else:
+        h = "black"
+    return h
+
+
+def num_stat():
+    if win_num in range(1,19):
+        h = "low"
+    else:
+        h = "high"
+    return h
 
 def score_check(guess_number, status, prime):
     def test1(guess_number, win_num):
@@ -62,6 +79,18 @@ def score_check(guess_number, status, prime):
             return 0
         else:
             return 1
+
+# def test4(choice):
+#     orig_choice = red_black()
+#     if choice != orig_choice:
+#         return 0
+#     else:
+#         return 1
+
+# def test5(option):
+    i
+    
+
 
     x = test1(guess_number, win_num)
     y = test2(status)
