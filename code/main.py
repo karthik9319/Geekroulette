@@ -178,6 +178,7 @@ def score_print(players):
             "range",
             "odd",
             "prime",
+            "Total winnings",
         ]
     )
     t.add_row(
@@ -188,9 +189,11 @@ def score_print(players):
             num_range(),
             odd_check(),
             prime_no_prime(),
+            "-",
         ]
     )
     for i in range(len(players)):
+        total =  players[i][1]+players[i][2]+players[i][3]+players[i][4]+players[i][5]
         t.add_row(
             [
                 players[i][0],
@@ -199,13 +202,52 @@ def score_print(players):
                 str(players[i][3]) + "$",
                 str(players[i][4]) + "$",
                 str(players[i][5]) + "$",
+                str(total)+ "$"
             ]
         )
     print(t)
 
 
+
+def player_print(players_orig):
+    t = PrettyTable(
+        [
+            "Players",
+            "Guess number",
+            "Bet amount1",
+            "red/black",
+            "Bet amount2",
+            "range",
+            "Bet amount3",
+            "odd",
+            "Bet amount4",
+            "prime",
+            "Bet amount5",
+        ]
+    )
+    for i in range(len(players_orig)):
+        t.add_row(
+            [
+                players_orig[i][0],
+                players_orig[i][1],
+                str(players_orig[i][2])+"$",
+                players_orig[i][3],
+                str(players_orig[i][4])+"$",
+                players_orig[i][5],
+                str(players_orig[i][6])+"$",
+                players_orig[i][7],
+                str(players_orig[i][8])+"$",
+                players_orig[i][9],
+                str(players_orig[i][10])+"$"
+                
+            ]
+        )
+    print(t)
+    
+
 # to store player data and input player information
 players = []
+players_orig = []
 for i in range(no_of_players):
     print("player {}: ".format(i + 1), dummy_names[i])
     overwrite = input("overwrite Player name(y or n)? : ")
@@ -235,6 +277,18 @@ for i in range(no_of_players):
             input("Prime (True or False): "),
             int(input("Bet amount: ")),
         )
+        players_orig.append([player,
+            guess_number,
+            bet_number,
+            choice,
+            bet_choice,
+            mode,
+            bet_mode,
+            status,
+            bet_status,
+            prime,
+            bet_prime])
+        
         win_status, choice, mode, status, prime = score_check(
             guess_number,
             bet_number,
@@ -275,6 +329,18 @@ for i in range(no_of_players):
             input("Prime (True or False): "),
             int(input("Bet amount: ")),
         )
+        
+        players_orig.append([dummy_names[i],
+            guess_number,
+            bet_number,
+            choice,
+            bet_choice,
+            mode,
+            bet_mode,
+            status,
+            bet_status,
+            prime,
+            bet_prime])
 
         win_status, choice, mode, status, prime = score_check(
             guess_number,
@@ -291,9 +357,19 @@ for i in range(no_of_players):
         players.append([player, win_status, choice, mode, status, prime])
 
 
-for i in tqdm(range(10000000), desc="Spinning the lucky wheel"):
+print(
+    "===================================================================================================================="
+)
+
+player_print(players_orig)
+# print(len(players_orig[0]))
+
+for i in tqdm(range(100000000), desc="Spinning the lucky wheel"):
     pass
 
+print(
+    "====================================================================================================================="
+)
 
 score_print(players)
 # todo people board to show what all bets they placed
