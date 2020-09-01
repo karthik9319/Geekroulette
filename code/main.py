@@ -251,6 +251,17 @@ def player_print(players_orig):
     print(t)
 
 
+def amount_check(number):
+    if number>100:
+        print("Amount exceeded by {}, Max allowed is 100$: ".format(number-100))
+        number = int(input("Bet amount: "))
+        amount_check(number)
+    else:
+        pass
+    return number
+   
+        
+
 # to store player data and input player information
 players = []
 players_orig = []
@@ -260,10 +271,7 @@ for i in range(no_of_players):
     if overwrite == "y":
         player = input("Player {}: ".format(i + 1))
         guess_number = int(input("choose number (1-36): "))
-        bet_number = int(input("Bet amount: "))
-        if bet_number >100:
-            print("Amount exceeded by {}, Max allowed is 100$: ".format(100-bet_number))
-            bet_number = int(input("Bet amount: "))
+        bet_number = amount_check(int(input("Bet amount: ")))
         
         choice = input("Red or Black: ") 
         if bet_number<100:
@@ -356,7 +364,7 @@ for i in range(no_of_players):
     else:
         player = dummy_names[i]
         guess_number = int(input("choose number (1-36): "))
-        bet_number = int(input("Bet amount: "))
+        bet_number = amount_check(int(input("Bet amount: ")))
         
         choice = input("Red or Black: ") 
         if bet_number<100:
