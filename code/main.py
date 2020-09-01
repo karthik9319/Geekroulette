@@ -4,6 +4,7 @@ from prettytable import PrettyTable  # type: ignore
 from tqdm import tqdm  # type: ignore
 
 from variables import dummy_names
+# import json
 
 cryptogen = SystemRandom()
 
@@ -50,6 +51,18 @@ print(
     "=============================================================================================="
 )
 
+
+
+
+
+# def json_check():
+#     with open('data.json', 'r', encoding='utf-8') as f:
+#         data = json.load(f)
+#     for i in data.keys():
+#         key = i
+#     return key
+
+# key = json_check()
 
 def game_logic():
     big_pot = []
@@ -189,17 +202,6 @@ def score_print(players):
             "Total winnings",
         ]
     )
-    t.add_row(
-        [
-            "Original values",
-            win_num,
-            red_black(),
-            num_range(),
-            odd_check(),
-            prime_no_prime(),
-            "-",
-        ]
-    )
     for i in range(len(players)):
         total = (
             players[i][1]
@@ -222,6 +224,30 @@ def score_print(players):
     print(t)
 
 
+
+def orig_print():
+    print("Original Values")
+    t = PrettyTable(
+        [
+            "Guess number",
+            "red/black",
+            "range",
+            "odd",
+            "prime",
+        ]
+    )
+    t.add_row(
+        [
+            win_num,
+            red_black(),
+            num_range(),
+            odd_check(),
+            prime_no_prime(),
+        ]
+    )
+    
+    print(t)
+    
 def player_print(players_orig):
     t = PrettyTable(
         [
@@ -475,12 +501,24 @@ print("\n")
 player_print(players_orig)
 # print(len(players_orig[0]))
 print("\n")
-for i in tqdm(range(100000000), desc="Spinning the lucky wheel"):
+for i in tqdm(range(10000000), desc="Spinning the lucky wheel"):
     pass
+print("\n")
+print(
+    "=============================================================================================================================="
+)
+orig_print()
 print("\n")
 print(
     "=============================================================================================================================="
 )
 print("\n")
 score_print(players)
+
+# data = {
+#     "id": win_num
+# }
+
+# with open('data.json', 'w', encoding='utf-8') as f:
+#     json.dump(data, f, ensure_ascii=False, indent=4)
 # todo people board to show what all bets they placed

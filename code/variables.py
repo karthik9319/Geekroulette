@@ -1,3 +1,4 @@
+import json
 dummy_names = [
     "bob guy",
     "winner",
@@ -75,3 +76,21 @@ dummy_names = [
     "Worms",
 ]
 
+# def json_check():
+#     with open('data.json', 'r', encoding='utf-8') as f:
+#         data = json.load(f)
+#         print(data)
+#     for i in data.keys():
+#         print(i)
+#         key = i.split("_")[1]
+#     return key
+
+# key = json_check()
+# print(key)
+# new_key = int(key)+1
+# # new_key= 0
+# data = {
+#     "id_{}".format(new_key) : 2
+# }
+# with open('data.json', 'w', encoding='utf-8') as f:
+#     json.dump(data, f, ensure_ascii=False, indent=4)
