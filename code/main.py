@@ -193,7 +193,13 @@ def score_print(players):
         ]
     )
     for i in range(len(players)):
-        total =  players[i][1]+players[i][2]+players[i][3]+players[i][4]+players[i][5]
+        total = (
+            players[i][1]
+            + players[i][2]
+            + players[i][3]
+            + players[i][4]
+            + players[i][5]
+        )
         t.add_row(
             [
                 players[i][0],
@@ -202,11 +208,10 @@ def score_print(players):
                 str(players[i][3]) + "$",
                 str(players[i][4]) + "$",
                 str(players[i][5]) + "$",
-                str(total)+ "$"
+                str(total) + "$",
             ]
         )
     print(t)
-
 
 
 def player_print(players_orig):
@@ -230,20 +235,19 @@ def player_print(players_orig):
             [
                 players_orig[i][0],
                 players_orig[i][1],
-                str(players_orig[i][2])+"$",
+                str(players_orig[i][2]) + "$",
                 players_orig[i][3],
-                str(players_orig[i][4])+"$",
+                str(players_orig[i][4]) + "$",
                 players_orig[i][5],
-                str(players_orig[i][6])+"$",
+                str(players_orig[i][6]) + "$",
                 players_orig[i][7],
-                str(players_orig[i][8])+"$",
+                str(players_orig[i][8]) + "$",
                 players_orig[i][9],
-                str(players_orig[i][10])+"$"
-                
+                str(players_orig[i][10]) + "$",
             ]
         )
     print(t)
-    
+
 
 # to store player data and input player information
 players = []
@@ -277,18 +281,22 @@ for i in range(no_of_players):
             input("Prime (True or False): "),
             int(input("Bet amount: ")),
         )
-        players_orig.append([player,
-            guess_number,
-            bet_number,
-            choice,
-            bet_choice,
-            mode,
-            bet_mode,
-            status,
-            bet_status,
-            prime,
-            bet_prime])
-        
+        players_orig.append(
+            [
+                player,
+                guess_number,
+                bet_number,
+                choice,
+                bet_choice,
+                mode,
+                bet_mode,
+                status,
+                bet_status,
+                prime,
+                bet_prime,
+            ]
+        )
+
         win_status, choice, mode, status, prime = score_check(
             guess_number,
             bet_number,
@@ -329,18 +337,22 @@ for i in range(no_of_players):
             input("Prime (True or False): "),
             int(input("Bet amount: ")),
         )
-        
-        players_orig.append([dummy_names[i],
-            guess_number,
-            bet_number,
-            choice,
-            bet_choice,
-            mode,
-            bet_mode,
-            status,
-            bet_status,
-            prime,
-            bet_prime])
+
+        players_orig.append(
+            [
+                dummy_names[i],
+                guess_number,
+                bet_number,
+                choice,
+                bet_choice,
+                mode,
+                bet_mode,
+                status,
+                bet_status,
+                prime,
+                bet_prime,
+            ]
+        )
 
         win_status, choice, mode, status, prime = score_check(
             guess_number,
