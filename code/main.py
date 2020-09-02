@@ -29,12 +29,14 @@ print("6: At each step machine shows how much money you left")
 #     "5. If you're not choosing that particular bet enter 0 in category as well as bet amount"
 # )
 # print("6. Choose the number you want to bet in range from 1-36")
-print("7. Choose the color either red or black")
+print("7: Numbers belonging to red are 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34 and 36")
+print("8: Numbers belonging to black are 2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33 and 35")
+print("9. Choose the color either red or black")
 print(
-    "8. Choose which range the number belongs to Dozen(1-12) Second(13-24) Third(25-36)"
+    "10. Choose which range the number belongs to Dozen(1-12) Second(13-24) Third(25-36)"
 )
-print("9. Choose whether is number is odd or not")
-print("10. Choose whether the number is prime or not")
+print("11. Choose whether is number is odd or not")
+print("12. Choose whether the number is prime or not")
 print(
     "============================================================================================="
 )
