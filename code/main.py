@@ -4,9 +4,11 @@ from prettytable import PrettyTable  # type: ignore
 from tqdm import tqdm  # type: ignore
 
 from variables import dummy_names
-# import json
+import datetime
+import csv
 
 cryptogen = SystemRandom()
+x = datetime.datetime.now()
 
 print("\n")
 print("Welcome to GeekRoulette for us coders!!!")
@@ -53,22 +55,10 @@ print(
 
 
 
-
-
-# def json_check():
-#     with open('data.json', 'r', encoding='utf-8') as f:
-#         data = json.load(f)
-#     for i in data.keys():
-#         key = i
-#     return key
-
-# key = json_check()
-
 def game_logic():
     big_pot = []
     for i in range(36):
         elem = [cryptogen.randrange(9) for i in range(9)]
-        # print(elem)
         sum_elem = sum(elem)
         big_pot.append(sum_elem)
     win_num = big_pot.index(min(big_pot))
@@ -515,10 +505,77 @@ print(
 print("\n")
 score_print(players)
 
-# data = {
-#     "id": win_num
-# }
 
-# with open('data.json', 'w', encoding='utf-8') as f:
-#     json.dump(data, f, ensure_ascii=False, indent=4)
-# todo people board to show what all bets they placed
+fields =[
+    "Date",
+    "Time",
+            "Players",
+            "Guess number",
+            "Bet amount1",
+            "red/black",
+            "Bet amount2",
+            "range",
+            "Bet amount3",
+            "odd",
+            "Bet amount4",
+            "prime",
+            "Bet amount5",
+            "winnings",
+            "Guess number",
+            "red/black",
+            "range",
+            "odd",
+            "prime",
+            "Total winnings",
+        ]
+
+
+for i in range(len(players_orig)):
+    total = (
+            players[i][1]
+            + players[i][2]
+            + players[i][3]
+            + players[i][4]
+            + players[i][5]
+        )
+    rows = [
+               [ x.strftime("%b %d %Y"),
+                x.strftime("%H:%M:%S"),
+                players_orig[i][0],
+                players_orig[i][1],
+                str(players_orig[i][2]) + "$",
+                players_orig[i][3],
+                str(players_orig[i][4]) + "$",
+                players_orig[i][5],
+                str(players_orig[i][6]) + "$",
+                players_orig[i][7],
+                str(players_orig[i][8]) + "$",
+                players_orig[i][9],
+                str(players_orig[i][10]) + "$",
+                "-",
+                str(players[i][1]) + "$",
+                str(players[i][2]) + "$",
+                str(players[i][3]) + "$",
+                str(players[i][4]) + "$",
+                str(players[i][5]) + "$",
+                str(total) + "$",      
+       ] 
+    ]
+    
+filename = "data_storage_players.csv"
+
+#to write change mode to w or append to a
+with open(filename, 'a') as csvfile:  
+    # creating a csv writer object  
+    csvwriter = csv.writer(csvfile)  
+        
+    # writing the fields  
+    # csvwriter.writerow(fields)  
+        
+    # writing the data rows  
+    csvwriter.writerows(rows) 
+    
+
+#todo resume the game with keeping winnings in track and play 
+#todo the game until 1 person is left checking anyone going to zero
+#todo and eliminating them from the game
