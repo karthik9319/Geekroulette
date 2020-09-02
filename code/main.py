@@ -10,6 +10,7 @@ from variables import dummy_names
 cryptogen = SystemRandom()
 x = datetime.datetime.now()
 
+#line 73
 print("\n")
 print("Welcome to GeekRoulette for us coders!!!")
 print("\n")
@@ -70,7 +71,7 @@ win_num = game_logic()
 print("\n")
 no_of_players = int(input("No of players: "))
 print("\n")
-print(win_num)
+# print(win_num)
 
 
 def odd_check():
