@@ -74,5 +74,3 @@ dummy_names = [
     "Winston 'Jazz Hands'",
     "Worms",
 ]
-
-print(len(dummy_names))
