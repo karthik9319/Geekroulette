@@ -457,6 +457,7 @@ fields = [
     "prime",
     "Bet amount5",
     "winnings",
+    "original number"
     "Guess number",
     "red/black",
     "range",
@@ -486,6 +487,7 @@ for i in range(len(players_orig)):
             players_orig[i][9],
             str(players_orig[i][10]) + "$",
             "-",
+            win_num,
             str(players[i][1]) + "$",
             str(players[i][2]) + "$",
             str(players[i][3]) + "$",
@@ -497,7 +499,7 @@ for i in range(len(players_orig)):
 
 filename = "data_storage_players.csv"
 
-# to write change mode to w or append to a
+# to write change mode to w or append to a and comment fileds while appending
 with open(filename, "a") as csvfile:
     # creating a csv writer object
     csvwriter = csv.writer(csvfile)
