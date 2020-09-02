@@ -56,7 +56,7 @@ print(
 
 def game_logic():
     big_pot = []
-    for i in range(36):
+    for _ in range(36):
         elem = [cryptogen.randrange(9) for i in range(9)]
         sum_elem = sum(elem)
         big_pot.append(sum_elem)
@@ -72,21 +72,15 @@ print(win_num)
 
 
 def odd_check():
-    if win_num > 0:
-        if win_num % 2 == 0:
-            return "False"
-        else:
-            return "True"
-    else:
+    if win_num % 2 == 0 or win_num <= 0:
         return "False"
+    else:
+        return "True"
 
 
 def prime_no_prime():
-    if win_num > 1:
-        if win_num in [2, 3, 5, 7]:
-            return "True"
-        else:
-            return "False"
+    if win_num > 1 and win_num in [2, 3, 5, 7]:
+        return "True"
     else:
         return "False"
 
@@ -100,11 +94,7 @@ def red_black():
 
 
 def num_stat():
-    if win_num in range(1, 19):
-        h = "low"
-    else:
-        h = "high"
-    return h
+    return "low" if win_num in range(1, 19) else "high"
 
 
 def num_range():
@@ -130,44 +120,29 @@ def score_check(
     bet_prime,
 ):
     def test1(guess_number, bet_number):
-        if guess_number == win_num:
-            h = 5
-        else:
-            h = 0
+        h = 5 if guess_number == win_num else 0
         return h * bet_number
 
     def test2(choice, bet_choice):
         orig_choice = red_black()
-        if choice != orig_choice:
-            h = 0
-        else:
-            h = 2
+        h = 0 if choice != orig_choice else 2
         return h * bet_choice
 
     def test3(option, bet_mode):
         orig_option = num_range()
-        if option != orig_option:
-            h = 0
-        else:
-            h = 2
+        h = 0 if option != orig_option else 2
         return h * bet_mode
 
     def test4(status, bet_status):
         status = status.capitalize()
         orig_status = odd_check()
-        if status != orig_status:
-            h = 0
-        else:
-            h = 2
+        h = 0 if status != orig_status else 2
         return h * bet_status
 
     def test5(prime, bet_prime):
         prime = prime.capitalize()
         orig_prime = prime_no_prime()
-        if prime != orig_prime:
-            h = 0
-        else:
-            h = 2
+        h = 0 if prime != orig_prime else 2
         return h * bet_prime
 
     win_status = test1(guess_number, bet_number)
@@ -191,25 +166,20 @@ def score_print(players):
             "Total winnings",
         ]
     )
-    for i in range(len(players)):
-        total = (
-            players[i][1]
-            + players[i][2]
-            + players[i][3]
-            + players[i][4]
-            + players[i][5]
-        )
+    for player in players:
+        total = player[1] + player[2] + player[3] + player[4] + player[5]
         t.add_row(
             [
-                players[i][0],
-                str(players[i][1]) + "$",
-                str(players[i][2]) + "$",
-                str(players[i][3]) + "$",
-                str(players[i][4]) + "$",
-                str(players[i][5]) + "$",
+                player[0],
+                str(player[1]) + "$",
+                str(player[2]) + "$",
+                str(player[3]) + "$",
+                str(player[4]) + "$",
+                str(player[5]) + "$",
                 str(total) + "$",
             ]
         )
+
     print(t)
 
 
@@ -239,22 +209,23 @@ def player_print(players_orig):
             "Bet amount5",
         ]
     )
-    for i in range(len(players_orig)):
+    for item in players_orig:
         t.add_row(
             [
-                players_orig[i][0],
-                players_orig[i][1],
-                str(players_orig[i][2]) + "$",
-                players_orig[i][3],
-                str(players_orig[i][4]) + "$",
-                players_orig[i][5],
-                str(players_orig[i][6]) + "$",
-                players_orig[i][7],
-                str(players_orig[i][8]) + "$",
-                players_orig[i][9],
-                str(players_orig[i][10]) + "$",
+                item[0],
+                item[1],
+                str(item[2]) + "$",
+                item[3],
+                str(item[4]) + "$",
+                item[5],
+                str(item[6]) + "$",
+                item[7],
+                str(item[8]) + "$",
+                item[9],
+                str(item[10]) + "$",
             ]
         )
+
     print(t)
 
 
@@ -263,8 +234,6 @@ def amount_check(number):
         print("Amount exceeded by {}, Max allowed is 100$: ".format(number - 100))
         number = int(input("Bet amount: "))
         amount_check(number)
-    else:
-        pass
     return number
 
 
@@ -277,133 +246,50 @@ for i in range(no_of_players):
     overwrite = input("overwrite Player name(y or n)? : ")
     if overwrite == "y":
         player = input("Player {}: ".format(i + 1))
-        print("\n")
-        guess_number = int(input("choose number (1-36): "))
-        bet_number = amount_check(int(input("Bet amount: ")))
-        print("\n")
-        choice = input("Red or Black: ")
-        if bet_number < 100:
-            print("Amount remaining: ", 100 - bet_number)
-            bet_choice = int(input("Bet amount: "))
-        else:
-            print("sorry you used up all 100$")
-            bet_choice = 0
-        print("\n")
-        mode = input("Dozen(1-12) \nSecond(13-24) \nThird(25-36): ")
-        if bet_number + bet_choice < 100:
-            print("Amount remaining: ", 100 - (bet_number + bet_choice))
-            bet_mode = int(input("Bet amount: "))
-        else:
-            print("sorry you used up all 100$")
-            bet_mode = 0
-        print("\n")
-        status = input("Odd (True or False): ")
-        if bet_number + bet_choice + bet_mode < 100:
-            print("Amount remaining: ", 100 - (bet_number + bet_choice + bet_mode))
-            bet_status = int(input("Bet amount: "))
-        else:
-            print("sorry you used up all 100$")
-            bet_status = 0
-        print("\n")
-        prime = input("Prime (True or False): ")
-        if bet_number + bet_choice + bet_mode + bet_status < 100:
-            print(
-                "Amount remaining: ",
-                100 - (bet_number + bet_choice + bet_mode + bet_status),
-            )
-            bet_prime = int(input("Bet amount: "))
-        else:
-            print("sorry you used up all 100$")
-            bet_prime = 0
-
-        players_orig.append(
-            [
-                player,
-                guess_number,
-                bet_number,
-                choice,
-                bet_choice,
-                mode,
-                bet_mode,
-                status,
-                bet_status,
-                prime,
-                bet_prime,
-            ]
-        )
-
-        win_status, choice, mode, status, prime = score_check(
-            guess_number,
-            bet_number,
-            choice,
-            bet_choice,
-            mode,
-            bet_mode,
-            status,
-            bet_status,
-            prime,
-            bet_prime,
-        )
-        players.append([player, win_status, choice, mode, status, prime])
-
     else:
         player = dummy_names[i]
-        print("\n")
-        guess_number = int(input("choose number (1-36): "))
-        bet_number = amount_check(int(input("Bet amount: ")))
-        print("\n")
-        choice = input("Red or Black: ")
-        if bet_number < 100:
-            print("Amount remaining: ", 100 - bet_number)
-            bet_choice = int(input("Bet amount: "))
-        else:
-            print("sorry you used up all 100$")
-            bet_choice = 0
-        print("\n")
-        mode = input("Dozen(1-12) \nSecond(13-24) \nThird(25-36): ")
-        if bet_number + bet_choice < 100:
-            print("Amount remaining: ", 100 - (bet_number + bet_choice))
-            bet_mode = int(input("Bet amount: "))
-        else:
-            print("sorry you used up all 100$")
-            bet_mode = 0
-        print("\n")
-        status = input("Odd (True or False): ")
-        if bet_number + bet_choice + bet_mode < 100:
-            print("Amount remaining: ", 100 - (bet_number + bet_choice + bet_mode))
-            bet_status = int(input("Bet amount: "))
-        else:
-            print("sorry you used up all 100$")
-            bet_status = 0
-        print("\n")
-        prime = input("Prime (True or False): ")
-        if bet_number + bet_choice + bet_mode + bet_status < 100:
-            print(
-                "Amount remaining: ",
-                100 - (bet_number + bet_choice + bet_mode + bet_status),
-            )
-            bet_prime = int(input("Bet amount: "))
-        else:
-            print("sorry you used up all 100$")
-            bet_prime = 0
-
-        players_orig.append(
-            [
-                dummy_names[i],
-                guess_number,
-                bet_number,
-                choice,
-                bet_choice,
-                mode,
-                bet_mode,
-                status,
-                bet_status,
-                prime,
-                bet_prime,
-            ]
+    print("\n")
+    guess_number = int(input("choose number (1-36): "))
+    bet_number = amount_check(int(input("Bet amount: ")))
+    print("\n")
+    choice = input("Red or Black: ")
+    if bet_number < 100:
+        print("Amount remaining: ", 100 - bet_number)
+        bet_choice = int(input("Bet amount: "))
+    else:
+        print("sorry you used up all 100$")
+        bet_choice = 0
+    print("\n")
+    mode = input("Dozen(1-12) \nSecond(13-24) \nThird(25-36): ")
+    if bet_number + bet_choice < 100:
+        print("Amount remaining: ", 100 - (bet_number + bet_choice))
+        bet_mode = int(input("Bet amount: "))
+    else:
+        print("sorry you used up all 100$")
+        bet_mode = 0
+    print("\n")
+    status = input("Odd (True or False): ")
+    if bet_number + bet_choice + bet_mode < 100:
+        print("Amount remaining: ", 100 - (bet_number + bet_choice + bet_mode))
+        bet_status = int(input("Bet amount: "))
+    else:
+        print("sorry you used up all 100$")
+        bet_status = 0
+    print("\n")
+    prime = input("Prime (True or False): ")
+    if bet_number + bet_choice + bet_mode + bet_status < 100:
+        print(
+            "Amount remaining: ",
+            100 - (bet_number + bet_choice + bet_mode + bet_status),
         )
+        bet_prime = int(input("Bet amount: "))
+    else:
+        print("sorry you used up all 100$")
+        bet_prime = 0
 
-        win_status, choice, mode, status, prime = score_check(
+    players_orig.append(
+        [
+            player,
             guess_number,
             bet_number,
             choice,
@@ -414,9 +300,22 @@ for i in range(no_of_players):
             bet_status,
             prime,
             bet_prime,
-        )
-        players.append([player, win_status, choice, mode, status, prime])
+        ]
+    )
 
+    win_status, choice, mode, status, prime = score_check(
+        guess_number,
+        bet_number,
+        choice,
+        bet_choice,
+        mode,
+        bet_mode,
+        status,
+        bet_status,
+        prime,
+        bet_prime,
+    )
+    players.append([player, win_status, choice, mode, status, prime])
 
 print(
     "============================================================================================================================="
