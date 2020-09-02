@@ -1,11 +1,11 @@
+import csv
+import datetime
 from random import SystemRandom
 
 from prettytable import PrettyTable  # type: ignore
 from tqdm import tqdm  # type: ignore
 
 from variables import dummy_names
-import datetime
-import csv
 
 cryptogen = SystemRandom()
 x = datetime.datetime.now()
@@ -52,7 +52,6 @@ print("\n")
 print(
     "=============================================================================================="
 )
-
 
 
 def game_logic():
@@ -214,30 +213,16 @@ def score_print(players):
     print(t)
 
 
-
 def orig_print():
     print("Original Values")
-    t = PrettyTable(
-        [
-            "Guess number",
-            "red/black",
-            "range",
-            "odd",
-            "prime",
-        ]
-    )
+    t = PrettyTable(["Guess number", "red/black", "range", "odd", "prime"])
     t.add_row(
-        [
-            win_num,
-            red_black(),
-            num_range(),
-            odd_check(),
-            prime_no_prime(),
-        ]
+        [win_num, red_black(), num_range(), odd_check(), prime_no_prime()]
     )
-    
+
     print(t)
-    
+
+
 def player_print(players_orig):
     t = PrettyTable(
         [
@@ -331,32 +316,6 @@ for i in range(no_of_players):
             print("sorry you used up all 100$")
             bet_prime = 0
 
-        # (
-        #     player,
-        #     guess_number,
-        #     bet_number,
-        #     choice,
-        #     bet_choice,
-        #     mode,
-        #     bet_mode,
-        #     status,
-        #     bet_status,
-        #     prime,
-        #     bet_prime,
-        # ) = (
-
-        #     int(input("choose number (1-36): ")),
-        #     int(input("Bet amount: ")),
-        #     input("Red or Black: "),
-        #     if bet_number< 100:
-        #         int(input("Bet amount: ")),
-        #     input("Dozen(1-12) \nSecond(13-24) \nThird(25-36): "),
-        #     int(input("Bet amount: ")),
-        #     input("Odd (True or False): "),
-        #     int(input("Bet amount: ")),
-        #     input("Prime (True or False): "),
-        #     int(input("Bet amount: ")),
-        # )
         players_orig.append(
             [
                 player,
@@ -427,31 +386,6 @@ for i in range(no_of_players):
         else:
             print("sorry you used up all 100$")
             bet_prime = 0
-        # (
-        #     player,
-        #     guess_number,
-        #     bet_number,
-        #     choice,
-        #     bet_choice,
-        #     mode,
-        #     bet_mode,
-        #     status,
-        #     bet_status,
-        #     prime,
-        #     bet_prime,
-        # ) = (
-        #     dummy_names[i],
-        #     int(input("choose number (1-36): ")),
-        #     int(input("Bet amount: ")),
-        #     input("Red or Black: "),
-        #     int(input("Bet amount: ")),
-        #     input("Dozen(1-12) \nSecond(13-24) \nThird(25-36): "),
-        #     int(input("Bet amount: ")),
-        #     input("Odd (True or False): "),
-        #     int(input("Bet amount: ")),
-        #     input("Prime (True or False): "),
-        #     int(input("Bet amount: ")),
-        # )
 
         players_orig.append(
             [
@@ -506,76 +440,73 @@ print("\n")
 score_print(players)
 
 
-fields =[
+fields = [
     "Date",
     "Time",
-            "Players",
-            "Guess number",
-            "Bet amount1",
-            "red/black",
-            "Bet amount2",
-            "range",
-            "Bet amount3",
-            "odd",
-            "Bet amount4",
-            "prime",
-            "Bet amount5",
-            "winnings",
-            "Guess number",
-            "red/black",
-            "range",
-            "odd",
-            "prime",
-            "Total winnings",
-        ]
+    "Players",
+    "Guess number",
+    "Bet amount1",
+    "red/black",
+    "Bet amount2",
+    "range",
+    "Bet amount3",
+    "odd",
+    "Bet amount4",
+    "prime",
+    "Bet amount5",
+    "winnings",
+    "Guess number",
+    "red/black",
+    "range",
+    "odd",
+    "prime",
+    "Total winnings",
+]
 
 
 for i in range(len(players_orig)):
     total = (
-            players[i][1]
-            + players[i][2]
-            + players[i][3]
-            + players[i][4]
-            + players[i][5]
-        )
+        players[i][1] + players[i][2] + players[i][3] + players[i][4] + players[i][5]
+    )
     rows = [
-               [ x.strftime("%b %d %Y"),
-                x.strftime("%H:%M:%S"),
-                players_orig[i][0],
-                players_orig[i][1],
-                str(players_orig[i][2]) + "$",
-                players_orig[i][3],
-                str(players_orig[i][4]) + "$",
-                players_orig[i][5],
-                str(players_orig[i][6]) + "$",
-                players_orig[i][7],
-                str(players_orig[i][8]) + "$",
-                players_orig[i][9],
-                str(players_orig[i][10]) + "$",
-                "-",
-                str(players[i][1]) + "$",
-                str(players[i][2]) + "$",
-                str(players[i][3]) + "$",
-                str(players[i][4]) + "$",
-                str(players[i][5]) + "$",
-                str(total) + "$",      
-       ] 
+        [
+            x.strftime("%b %d %Y"),
+            x.strftime("%H:%M:%S"),
+            players_orig[i][0],
+            players_orig[i][1],
+            str(players_orig[i][2]) + "$",
+            players_orig[i][3],
+            str(players_orig[i][4]) + "$",
+            players_orig[i][5],
+            str(players_orig[i][6]) + "$",
+            players_orig[i][7],
+            str(players_orig[i][8]) + "$",
+            players_orig[i][9],
+            str(players_orig[i][10]) + "$",
+            "-",
+            str(players[i][1]) + "$",
+            str(players[i][2]) + "$",
+            str(players[i][3]) + "$",
+            str(players[i][4]) + "$",
+            str(players[i][5]) + "$",
+            str(total) + "$",
+        ]
     ]
-    
+
 filename = "data_storage_players.csv"
 
-#to write change mode to w or append to a
-with open(filename, 'a') as csvfile:  
-    # creating a csv writer object  
-    csvwriter = csv.writer(csvfile)  
-        
-    # writing the fields  
-    # csvwriter.writerow(fields)  
-        
-    # writing the data rows  
-    csvwriter.writerows(rows) 
-    
+# to write change mode to w or append to a
+with open(filename, "a") as csvfile:
+    # creating a csv writer object
+    csvwriter = csv.writer(csvfile)
 
-#todo resume the game with keeping winnings in track and play 
-#todo the game until 1 person is left checking anyone going to zero
-#todo and eliminating them from the game
+    # writing the fields
+    # csvwriter.writerow(fields)
+
+    # writing the data rows
+    csvwriter.writerows(rows)
+
+
+# todo resume the game with keeping winnings in track and play
+# todo the game until 1 person is left checking anyone going to zero
+# todo and eliminating them from the game
