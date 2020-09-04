@@ -428,7 +428,7 @@ print("\n")
 player_print(players_orig)
 # print(len(players_orig[0]))
 print("\n")
-for i in tqdm(range(10000000), desc="Spinning the lucky wheel"):
+for i in tqdm(range(100000000), desc="Spinning the lucky wheel"):
     pass
 print("\n")
 print(

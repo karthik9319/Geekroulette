@@ -74,3 +74,14 @@ dummy_names = [
     "Winston 'Jazz Hands'",
     "Worms",
 ]
+
+for i in range(2):
+    # print("default player name {}: ".format(i + 1), dummy_names[i])
+    # overwrite = input("overwrite Player name(y or n)? : ")
+    # if overwrite == "y":
+    player_1, player_2, player_3 = input("Enter number: ").split()
+        
+
+print(player_1)
+print(player_2)
+print(player_3)

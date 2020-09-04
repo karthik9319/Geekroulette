@@ -1,3 +1,6 @@
 Date,Time,Players,Guess number,Bet amount1,red/black,Bet amount2,range,Bet amount3,odd,Bet amount4,prime,Bet amount5,winnings,original numberGuess number,red/black,range,odd,prime,Total winnings
 Sep 02 2020,12:52:05,karthik,32,100$,,0$,,0$,,0$,,0$,-,32,500$,0$,0$,0$,0$,500$
 Sep 02 2020,12:52:53,bob guy,11,100$,,0$,,0$,,0$,,0$,-,13,0$,0$,0$,0$,0$,0$
+Sep 02 2020,17:21:40,navita,4,15$,black,25$,third,25$,false,20$,false,15$,-,18,0$,0$,0$,40$,30$,70$
+Sep 02 2020,17:33:43,karthik,31,25$,red,20$,second,15$,false,20$,true,20$,-,32,0$,40$,0$,40$,0$,80$
+Sep 02 2020,20:25:33,karthik,27,30$,red,20$,dozen,10$,true,20$,false,20$,-,16,0$,40$,0$,0$,40$,80$
